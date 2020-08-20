@@ -1,3 +1,3 @@
 # BachandNetworking
 
-A description of this package.
+The networking stack for personal projects.
