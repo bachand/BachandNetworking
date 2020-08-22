@@ -7,7 +7,14 @@ import XCTest
 final class HTTPResponseTests: XCTestCase {
 
   func test_init_urlResponseIsNotHTTP_throwsError() {
-    XCTAssertThrowsError(try HTTPResponse(data: .init(), urlResponse: URLResponse()))
+    let errorHandler: (Error) -> Void = {
+      let nsError = $0 as NSError
+      XCTAssertEqual(nsError.code, HTTPResponseError.Code.responseNotHTTP.rawValue)
+    }
+    XCTAssertThrowsError(
+      try HTTPResponse(data: .init(), urlResponse: URLResponse()),
+      "Error has code for .schemeNotSecure",
+      errorHandler)
   }
 
   func test_init_urlResponseIsHTTP_doesNotThrowError() {
@@ -34,7 +41,10 @@ final class HTTPResponseFactoryTests: XCTestCase {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotSecure.rawValue)
       }
-      XCTAssertThrowsError(try makeSecureDataTaskPublisher(for: url), "", errorHandler)
+      XCTAssertThrowsError(
+        try makeSecureDataTaskPublisher(for: url),
+        "Error has code for .schemeNotSecure",
+        errorHandler)
       return url
     })
   }
