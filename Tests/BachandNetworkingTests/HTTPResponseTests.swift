@@ -22,11 +22,7 @@ final class HTTPResponseTests: XCTestCase {
   }
 
   func test_statusCode_returnsValueInURLResponse() throws {
-    let urlResponse = HTTPURLResponse(
-      url: URL(string: "/resource")!,
-      statusCode: 10,
-      httpVersion: nil,
-      headerFields: nil)!
+    let urlResponse = makeStubHTTPURLResponse(statusCode: 10)
     let sut = try HTTPResponse(data: .init(), urlResponse: urlResponse)
     XCTAssertEqual(sut.statusCode, 10)
   }
@@ -48,4 +44,16 @@ final class HTTPResponseFactoryTests: XCTestCase {
       return url
     })
   }
+}
+
+private func makeStubHTTPURLResponse(
+  url: URL = URL(string: "/resource")!,
+  statusCode: Int)
+  -> HTTPURLResponse
+{
+  HTTPURLResponse(
+    url: url,
+    statusCode: statusCode,
+    httpVersion: nil,
+    headerFields: nil)!
 }
