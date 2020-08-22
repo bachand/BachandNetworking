@@ -9,10 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build debug
+    - name: Build Swift package, debug
       # Build strictly
       run: swift build -v -c debug --disable-automatic-resolution
-    - name: Build release
+    - name: Build Swift package, release
       # Build strictly
       run: swift build -v -c release --disable-automatic-resolution
     - name: Run tests
