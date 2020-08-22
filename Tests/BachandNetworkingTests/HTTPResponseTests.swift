@@ -13,7 +13,7 @@ final class HTTPResponseTests: XCTestCase {
     }
     XCTAssertThrowsError(
       try HTTPResponse(data: .init(), urlResponse: URLResponse()),
-      "Error has code for .schemeNotSecure",
+      "Error has code for .responseNotHTTP",
       errorHandler)
   }
 
