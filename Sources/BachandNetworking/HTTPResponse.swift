@@ -25,7 +25,7 @@ enum HTTPResponseError {
   public static let errorDomain = "HTTPResponse"
 
   enum Code: Int {
-    /// Apple Foundation framework returns a respnse that is not of type `HTTPURLResponse`.
+    /// Apple Foundation framework returns a response that is not of type `HTTPURLResponse`.
     case responseNotHTTP = 100
     /// Developer specified a URL that does not have the HTTP scheme.
     case schemeNotSecure = 101
