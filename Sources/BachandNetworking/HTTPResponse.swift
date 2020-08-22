@@ -54,8 +54,6 @@ public func makeSecureDataTaskPublisher(
   return publisher.map { try! HTTPResponse(data: $0, urlResponse: $1) }.eraseToAnyPublisher()
 }
 
-
-
 private func makeError(code: HTTPResponseError.Code) -> Error {
   NSError(domain: HTTPResponseError.errorDomain, code: code.rawValue)
 }
