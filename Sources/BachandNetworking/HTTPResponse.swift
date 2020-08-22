@@ -8,7 +8,7 @@ public struct HTTPResponse {
   let data: Data
   let response: HTTPURLResponse
 
-/// - Throws: An error if `urlResponse` is any type other than `HTTPURLResponse`. The error will have the domain "HTTPResponse" and the code 100.
+  /// - Throws: An error if `urlResponse` is any type other than `HTTPURLResponse`. The error will have the domain "HTTPResponse" and the code 100.
   init(data: Data, urlResponse: URLResponse) throws {
     self.data = data
     guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
