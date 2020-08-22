@@ -5,8 +5,10 @@ import Foundation
 
 /// A value type representing a HTTP response.
 public struct HTTPResponse {
-  let data: Data
-  let response: HTTPURLResponse
+  /// The data returned.
+  public let data: Data
+  /// The underlying response object.
+  public let response: HTTPURLResponse
 
   /// - Throws: An error if `urlResponse` is any type other than `HTTPURLResponse`. The error will have the domain "HTTPResponse" and the code 100. The error is of type `NSError`.
   init(data: Data, urlResponse: URLResponse) throws {
