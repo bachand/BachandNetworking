@@ -40,7 +40,7 @@ enum HTTPResponseError {
 ///
 /// - Returns: A type-erased publisher.
 ///
-/// - Throws: An error if the URL has any scheme other than "http". The error will have the domain "HTTPResponse" and the code 101.  The error is of type `NSError`.
+/// - Throws: An error if the URL has any scheme other than "http". The error will have the domain "HTTPResponse" and the code 101. The error is of type `NSError`.
 public func makeSecureDataTaskPublisher(
   for url: URL,
   on urlSession: URLSession = .shared)
