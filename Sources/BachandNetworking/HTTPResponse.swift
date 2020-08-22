@@ -23,10 +23,12 @@ public struct HTTPResponse {
   public var statusCode: Int { response.statusCode }
 }
 
+/// A namespace for values associated with any error encountered during the process of getting a `HTTPResponse`.
 enum HTTPResponseError {
   /// The domain on errors associated with a HTTP response.
   public static let errorDomain = "HTTPResponse"
 
+  /// An error code associated with `HTTPResponse`.
   enum Code: Int {
     /// Apple Foundation framework returns a response that is not of type `HTTPURLResponse`.
     case responseNotHTTP = 100
