@@ -39,7 +39,7 @@ enum HTTPResponseError {
 ///
 /// - Returns: A type-erased publisher.
 ///
-/// - Precondition: The URL must have scheme that is "https".
+/// - Throws: An error if the URL has any scheme other than "http". The error will have the domain "HTTPResponse" and the code 101.
 public func makeSecureDataTaskPublisher(
   for url: URL,
   on urlSession: URLSession = .shared)
