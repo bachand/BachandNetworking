@@ -17,3 +17,12 @@ jobs:
       run: swift build -v -c release --disable-automatic-resolution
     - name: Run tests
       run: swift test -v
+
+    - name: Build for iOS
+      run: xcodebuild -scheme BachandNetworking -destination 'platform=iOS Simulator,OS=13.6,name=iPhone 11 Pro'
+    - name: Build for macOS
+      run: xcodebuild -scheme BachandNetworking -destination 'platform=macOS,variant=Mac Catalyst'
+    - name: Build for tvOS
+      run: xcodebuild -scheme BachandNetworking -destination 'platform=tvOS Simulator,OS=13.4,name=Apple TV 4K'
+    - name: Build for watchOS
+      run: echo 'Do nothing until watchOS supports XCTest'
