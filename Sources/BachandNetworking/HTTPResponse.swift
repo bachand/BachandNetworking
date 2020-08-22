@@ -11,7 +11,7 @@ public struct HTTPResponse {
   init(data: Data, urlResponse: URLResponse) throws {
     self.data = data
     guard let httpURLResponse = urlResponse as? HTTPURLResponse else {
-      throw makeError(code: .responseNotSecure)
+      throw makeError(code: .responseNotHTTP)
     }
     self.response = httpURLResponse
   }
@@ -26,7 +26,7 @@ enum HTTPResponseError {
 
   enum Code: Int {
     /// Apple Foundation framework returns a respnse that is not of type `HTTPURLResponse`.
-    case responseNotSecure = 100
+    case responseNotHTTP = 100
     /// Developer specified a URL that does not have the HTTP scheme.
     case schemeNotSecure = 101
   }
