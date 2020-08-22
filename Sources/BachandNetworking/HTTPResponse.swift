@@ -25,7 +25,7 @@ public struct HTTPResponse {
 
 /// A namespace for values associated with any error encountered during the process of getting a `HTTPResponse`.
 enum HTTPResponseError {
-  /// The domain on errors associated with a HTTP response.
+  /// The domain of errors.
   public static let errorDomain = "HTTPResponse"
 
   /// An error code associated with `HTTPResponse`.
