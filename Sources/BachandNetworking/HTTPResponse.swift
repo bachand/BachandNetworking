@@ -33,7 +33,7 @@ enum HTTPResponseError {
     /// Apple Foundation framework returns a response that is not of type `HTTPURLResponse`.
     case responseNotHTTP = 100
     /// Developer specified a URL that does not have the "https" scheme.
-    case schemeNotSecure = 101
+    case schemeNotHTTPS = 101
     /// Developer specified a URL that does not have a "http" or "https" scheme.
     case schemeNotHTTPBased = 102
   }
@@ -55,7 +55,7 @@ public func makeSecureHTTPResponsePublisher(
   throws
   -> AnyPublisher<HTTPResponse, URLError>
 {
-  guard let scheme = url.scheme, scheme == "https" else { throw makeError(code: .schemeNotSecure) }
+  guard let scheme = url.scheme, scheme == "https" else { throw makeError(code: .schemeNotHTTPS) }
   return try makeHTTPResponsePublisher(for: url, on: urlSession)
 }
 

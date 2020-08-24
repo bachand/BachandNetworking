@@ -43,11 +43,11 @@ final class HTTPResponseFactoryTests: XCTestCase {
     XCTAssertNotNil(try url.flatMap { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
-        XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotSecure.rawValue)
+        XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPS.rawValue)
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: url),
-        "Error has code for .schemeNotSecure",
+        "Error has code for .schemeNotHTTPS",
         errorHandler)
       return url
     })
@@ -58,11 +58,11 @@ final class HTTPResponseFactoryTests: XCTestCase {
     XCTAssertNotNil(try url.flatMap { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
-        XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotSecure.rawValue)
+        XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPS.rawValue)
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: url),
-        "Error has code for .schemeNotSecure",
+        "Error has code for .schemeNotHTTPS",
         errorHandler)
       return url
     })
