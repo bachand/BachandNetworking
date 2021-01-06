@@ -2,6 +2,8 @@
 
 ## Next version
 
+You can now create a publisher for a `HTTPResponse` with a `URLRequest`, allowing you to add custom headers.
+
 ## 0.0.2
 
 We [explicitly specify the platforms](https://github.com/bachand/BachandNetworking/pull/3) that we support and we [build those platforms in
