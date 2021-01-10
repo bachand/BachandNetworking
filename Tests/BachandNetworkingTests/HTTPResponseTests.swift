@@ -64,7 +64,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: url),
-        "Error has code for .schemeNotHTTPS",
+        "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
@@ -77,7 +77,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: url),
-        "Error has code for .schemeNotHTTPS",
+        "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
@@ -102,7 +102,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeHTTPResponsePublisher(for: url),
-        "Error has code for .schemeNotHTTPBased",
+        "Error should have code for .schemeNotHTTPBased",
         errorHandler)
     }
   }
@@ -121,7 +121,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: URLRequest(url: url)),
-        "Error has code for .schemeNotHTTPS",
+        "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
@@ -134,7 +134,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: URLRequest(url: url)),
-        "Error has code for .schemeNotHTTPS",
+        "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
@@ -149,7 +149,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeSecureHTTPResponsePublisher(for: urlRequest),
-        "Error has code for .requestHasNoURL",
+        "Error should have code for .requestHasNoURL",
         errorHandler)
     }
   }
@@ -174,7 +174,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeHTTPResponsePublisher(for: URLRequest(url: url)),
-        "Error has code for .schemeNotHTTPBased",
+        "Error should have code for .schemeNotHTTPBased",
         errorHandler)
     }
   }
@@ -189,7 +189,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
       }
       XCTAssertThrowsError(
         try makeHTTPResponsePublisher(for: urlRequest),
-        "Error has code for .requestHasNoURL",
+        "Error should have code for .requestHasNoURL",
         errorHandler)
     }
   }
