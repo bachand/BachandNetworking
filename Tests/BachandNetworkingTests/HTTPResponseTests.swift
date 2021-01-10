@@ -4,7 +4,11 @@ import XCTest
 
 @testable import BachandNetworking
 
+// MARK: - HTTPResponseTests
+
 final class HTTPResponseTests: XCTestCase {
+
+  // MARK: Internal
 
   func test_init_urlResponseIsNotHTTP_throwsError() {
     let errorHandler: (Error) -> Void = {
@@ -26,7 +30,23 @@ final class HTTPResponseTests: XCTestCase {
     let sut = try HTTPResponse(data: .init(), urlResponse: urlResponse)
     XCTAssertEqual(sut.statusCode, 10)
   }
+
+  // MARK: Private
+
+  private func makeStubHTTPURLResponse(
+    url: URL = URL(string: "/resource")!,
+    statusCode: Int)
+    -> HTTPURLResponse
+  {
+    HTTPURLResponse(
+      url: url,
+      statusCode: statusCode,
+      httpVersion: nil,
+      headerFields: nil)!
+  }
 }
+
+// MARK: - HTTPResponseFactoryTests
 
 final class HTTPResponseFactoryTests: XCTestCase {
 
@@ -98,16 +118,4 @@ final class HTTPResponseFactoryTests: XCTestCase {
       return url
     })
   }
-}
-
-private func makeStubHTTPURLResponse(
-  url: URL = URL(string: "/resource")!,
-  statusCode: Int)
-  -> HTTPURLResponse
-{
-  HTTPURLResponse(
-    url: url,
-    statusCode: statusCode,
-    httpVersion: nil,
-    headerFields: nil)!
 }
