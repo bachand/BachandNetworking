@@ -113,7 +113,6 @@ public func makeSecureHTTPResponsePublisher(
 ///
 /// - Returns: A type-erased publisher.
 ///
-///
 /// - Throws: All errors are of type `NSError` and will have the domain "HTTPResponse". If the request's URL has any scheme
 ///   other than "http" or "https" the error code is 102. If the request does not have a URL the error code is 103.
 public func makeHTTPResponsePublisher(
