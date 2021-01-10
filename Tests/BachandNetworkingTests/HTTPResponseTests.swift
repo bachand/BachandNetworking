@@ -30,7 +30,7 @@ final class HTTPResponseTests: XCTestCase {
 
 final class HTTPResponseFactoryTests: XCTestCase {
 
-  func test_makeSecureHTTPResponsePublisher_schemeIsHTTPS_doesNotThrowsError() throws {
+  func test_makeSecureHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowsError() throws {
     let url = URL(string: "https://apple.com")
     XCTAssertNotNil(try url.flatMap { url in
       XCTAssertNoThrow(try makeSecureHTTPResponsePublisher(for: url))
@@ -38,7 +38,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
     })
   }
 
-  func test_makeSecureHTTPResponsePublisher_schemeIsHTTP_throwsError() throws {
+  func test_makeSecureHTTPResponsePublisherForURL_schemeIsHTTP_throwsError() throws {
     let url = URL(string: "http://apple.com")
     XCTAssertNotNil(try url.flatMap { url in
       let errorHandler: (Error) -> Void = {
@@ -53,7 +53,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
     })
   }
 
-  func test_makeSecureHTTPResponsePublisher_schemeIsFTP_throwsError() throws {
+  func test_makeSecureHTTPResponsePublisherForURL_schemeIsFTP_throwsError() throws {
     let url = URL(string: "ftp://apple.com")
     XCTAssertNotNil(try url.flatMap { url in
       let errorHandler: (Error) -> Void = {
@@ -68,7 +68,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
     })
   }
 
-  func test_makeHTTPResponsePublisher_schemeIsHTTP_doesNotThrowsError() throws {
+  func test_makeHTTPResponsePublisherForURL_schemeIsHTTP_doesNotThrowsError() throws {
     let url = URL(string: "http://apple.com")
     XCTAssertNotNil(try url.flatMap { url in
       XCTAssertNoThrow(try makeHTTPResponsePublisher(for: url))
@@ -76,7 +76,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
     })
   }
 
-  func test_makeHTTPResponsePublisher_schemeIsHTTPS_doesNotThrowsError() throws {
+  func test_makeHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowsError() throws {
     let url = URL(string: "https://apple.com")
     XCTAssertNotNil(try url.flatMap { url in
       XCTAssertNoThrow(try makeHTTPResponsePublisher(for: url))
@@ -84,7 +84,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
     })
   }
 
-  func test_makeHTTPResponsePublisher_schemeIsFTP_throwsError() throws {
+  func test_makeHTTPResponsePublisherForURL_schemeIsFTP_throwsError() throws {
     let url = URL(string: "ftp://apple.com")
     XCTAssertNotNil(try url.flatMap { url in
       let errorHandler: (Error) -> Void = {
