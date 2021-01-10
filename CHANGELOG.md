@@ -2,7 +2,7 @@
 
 ## Next version
 
-You can now create a publisher for a `HTTPResponse` with a `URLRequest`, allowing you to add custom headers.
+You can now create a publisher for an `HTTPResponse` with a `URLRequest`, allowing you to add custom headers.
 
 ## 0.0.2
 
