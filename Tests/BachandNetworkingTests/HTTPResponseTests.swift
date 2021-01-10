@@ -50,7 +50,7 @@ final class HTTPResponseTests: XCTestCase {
 
 final class HTTPResponseFactoryTests: XCTestCase {
 
-  func test_makeSecureHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowsError() throws {
+  func test_makeSecureHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
       XCTAssertNoThrow(try makeSecureHTTPResponsePublisher(for: url))
     }
@@ -82,13 +82,13 @@ final class HTTPResponseFactoryTests: XCTestCase {
     }
   }
 
-  func test_makeHTTPResponsePublisherForURL_schemeIsHTTP_doesNotThrowsError() throws {
+  func test_makeHTTPResponsePublisherForURL_schemeIsHTTP_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "http://apple.com") { url in
       XCTAssertNoThrow(try makeHTTPResponsePublisher(for: url))
     }
   }
 
-  func test_makeHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowsError() throws {
+  func test_makeHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
       XCTAssertNoThrow(try makeHTTPResponsePublisher(for: url))
     }
@@ -107,7 +107,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
     }
   }
 
-  func test_makeSecureHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowsError() throws {
+  func test_makeSecureHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
       XCTAssertNoThrow(try makeSecureHTTPResponsePublisher(for: URLRequest(url: url)))
     }
@@ -154,13 +154,13 @@ final class HTTPResponseFactoryTests: XCTestCase {
     }
   }
 
-  func test_makeHTTPResponsePublisherForURLRequest_schemeIsHTTP_doesNotThrowsError() throws {
+  func test_makeHTTPResponsePublisherForURLRequest_schemeIsHTTP_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "http://apple.com") { url in
       XCTAssertNoThrow(try makeHTTPResponsePublisher(for: URLRequest(url: url)))
     }
   }
 
-  func test_makeHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowsError() throws {
+  func test_makeHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
       XCTAssertNoThrow(try makeHTTPResponsePublisher(for: URLRequest(url: url)))
     }
