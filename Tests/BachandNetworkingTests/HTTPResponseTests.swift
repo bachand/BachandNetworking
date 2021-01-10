@@ -194,9 +194,8 @@ final class HTTPResponseFactoryTests: XCTestCase {
     }
   }
 
-  // Attempts to unwrap a string representing a URL, invoking the provided closure if the unwrapping
-  // is succesful. Fires an XCTest assertion on the calling line of code if the string does not
-  // represent a valid URL.
+  /// Attempts to create a URL from a string representing a URL, invoking the provided closure if the URL is non-`nil`. Fires an
+  /// XCTest assertion on the calling line of code if the string does not represent a valid URL.
   private func safelyUnwrapURL(
     string: String,
     file: StaticString = #filePath,
