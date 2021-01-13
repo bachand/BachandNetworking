@@ -2,7 +2,9 @@
 
 ## Next version
 
-You can now create a publisher for an `HTTPResponse` with a `URLRequest`, allowing you to add custom headers. The `makeSecureHTTPResponsePublisher(for:in:)` functions have been renamed to `makeHTTPResponsePublisher(for:in:)` and the `makeHTTPResponsePublisher(for:in:)` functions have been renamed to `makeInsecureHTTPResponsePublisher(for:in:)` to reflect the fact that developers should prefer HTTPS.
+You can now create a publisher for an `HTTPResponse` with a `URLRequest`, allowing you to add custom headers.
+
+The `makeSecureHTTPResponsePublisher(for:in:)` functions have been renamed to `makeHTTPResponsePublisher(for:in:)` and the `makeHTTPResponsePublisher(for:in:)` functions have been renamed to `makeInsecureHTTPResponsePublisher(for:in:)` to reflect the fact that developers should prefer HTTPS. We've also namespaced the methods to make an `HTTPSResponse` publisher within `URLSession` since that style is generally preferred to free functions.
 
 ## 0.0.2
 
