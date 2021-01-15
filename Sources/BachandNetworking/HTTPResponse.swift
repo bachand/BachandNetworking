@@ -58,14 +58,14 @@ extension URLSession {
   ///
   /// - Throws: All errors are of type `NSError` and will have the domain "HTTPResponse". If the URL has any scheme other than
   ///   "https" the error code is 101.
-  public static func makeHTTPResponsePublisher(
+  public static func safeMakeHTTPResponsePublisher(
     for url: URL,
     on urlSession: URLSession = .shared)
   throws
   -> AnyPublisher<HTTPResponse, URLError>
   {
     guard let scheme = url.scheme, scheme == "https" else { throw makeError(code: .schemeNotHTTPS) }
-    return try makeInsecureHTTPResponsePublisher(for: url, on: urlSession)
+    return try safeMakeInsecureHTTPResponsePublisher(for: url, on: urlSession)
   }
 
   /// Creates a data task publisher for a URL with the HTTP or HTTPS scheme. The output of that publisher is mapped to an
@@ -81,7 +81,7 @@ extension URLSession {
   ///
   /// - Throws: All errors are of type `NSError` and will have the domain "HTTPResponse". If the URL has any scheme other than
   ///   "http" or "https" the error code is 102.
-  public static func makeInsecureHTTPResponsePublisher(
+  public static func safeMakeInsecureHTTPResponsePublisher(
     for url: URL,
     on urlSession: URLSession = .shared)
   throws
@@ -104,7 +104,7 @@ extension URLSession {
   ///
   /// - Throws: All errors are of type `NSError` and will have the domain "HTTPResponse". If the request's URL has any scheme
   ///   other than "https" the error code is 101. If the request does not have a URL the error code is 103.
-  public static func makeHTTPResponsePublisher(
+  public static func safeMakeHTTPResponsePublisher(
     for urlRequest: URLRequest,
     on urlSession: URLSession = .shared)
   throws
@@ -112,7 +112,7 @@ extension URLSession {
   {
     guard let url = urlRequest.url else { throw makeError(code: .requestHasNoURL) }
     guard let scheme = url.scheme, scheme == "https" else { throw makeError(code: .schemeNotHTTPS) }
-    return try makeInsecureHTTPResponsePublisher(for: urlRequest, on: urlSession)
+    return try safeMakeInsecureHTTPResponsePublisher(for: urlRequest, on: urlSession)
   }
 
   /// Creates a data task publisher for a URL request with the HTTP or HTTPS scheme. The output of that publisher is mapped to an
@@ -128,7 +128,7 @@ extension URLSession {
   ///
   /// - Throws: All errors are of type `NSError` and will have the domain "HTTPResponse". If the request's URL has any scheme
   ///   other than "http" or "https" the error code is 102. If the request does not have a URL the error code is 103.
-  public static func makeInsecureHTTPResponsePublisher(
+  public static func safeMakeInsecureHTTPResponsePublisher(
     for urlRequest: URLRequest,
     on urlSession: URLSession = .shared)
   throws
