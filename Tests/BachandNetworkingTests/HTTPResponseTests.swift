@@ -51,96 +51,96 @@ final class HTTPResponseTests: XCTestCase {
 
 final class HTTPResponseFactoryTests: XCTestCase {
 
-  func test_makeHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowError() throws {
+  func test_safeMakeHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
-      XCTAssertNoThrow(try URLSession.makeHTTPResponsePublisher(for: url))
+      XCTAssertNoThrow(try URLSession.safeMakeHTTPResponsePublisher(for: url))
     }
   }
 
-  func test_makeHTTPResponsePublisherForURL_schemeIsHTTP_throwsError() throws {
+  func test_safeMakeHTTPResponsePublisherForURL_schemeIsHTTP_throwsError() throws {
     try safelyUnwrapURL(string: "http://apple.com") { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPS.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeHTTPResponsePublisher(for: url),
+        try URLSession.safeMakeHTTPResponsePublisher(for: url),
         "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
 
-  func test_makeHTTPResponsePublisherForURL_schemeIsFTP_throwsError() throws {
+  func test_safeMakeHTTPResponsePublisherForURL_schemeIsFTP_throwsError() throws {
     try safelyUnwrapURL(string: "ftp://apple.com") { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPS.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeHTTPResponsePublisher(for: url),
+        try URLSession.safeMakeHTTPResponsePublisher(for: url),
         "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURL_schemeIsHTTP_doesNotThrowError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURL_schemeIsHTTP_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "http://apple.com") { url in
-      XCTAssertNoThrow(try URLSession.makeInsecureHTTPResponsePublisher(for: url))
+      XCTAssertNoThrow(try URLSession.safeMakeInsecureHTTPResponsePublisher(for: url))
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURL_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
-      XCTAssertNoThrow(try URLSession.makeInsecureHTTPResponsePublisher(for: url))
+      XCTAssertNoThrow(try URLSession.safeMakeInsecureHTTPResponsePublisher(for: url))
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURL_schemeIsFTP_throwsError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURL_schemeIsFTP_throwsError() throws {
     try safelyUnwrapURL(string: "ftp://apple.com") { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPBased.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeInsecureHTTPResponsePublisher(for: url),
+        try URLSession.safeMakeInsecureHTTPResponsePublisher(for: url),
         "Error should have code for .schemeNotHTTPBased",
         errorHandler)
     }
   }
 
-  func test_makeHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowError() throws {
+  func test_safeMakeHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
-      XCTAssertNoThrow(try URLSession.makeHTTPResponsePublisher(for: URLRequest(url: url)))
+      XCTAssertNoThrow(try URLSession.safeMakeHTTPResponsePublisher(for: URLRequest(url: url)))
     }
   }
 
-  func test_makeHTTPResponsePublisherForURLRequest_schemeIsHTTP_throwsError() throws {
+  func test_safeMakeHTTPResponsePublisherForURLRequest_schemeIsHTTP_throwsError() throws {
     try safelyUnwrapURL(string: "http://apple.com") { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPS.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeHTTPResponsePublisher(for: URLRequest(url: url)),
+        try URLSession.safeMakeHTTPResponsePublisher(for: URLRequest(url: url)),
         "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
 
-  func test_makeHTTPResponsePublisherForURLRequest_schemeIsFTP_throwsError() throws {
+  func test_safeMakeHTTPResponsePublisherForURLRequest_schemeIsFTP_throwsError() throws {
     try safelyUnwrapURL(string: "ftp://apple.com") { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPS.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeHTTPResponsePublisher(for: URLRequest(url: url)),
+        try URLSession.safeMakeHTTPResponsePublisher(for: URLRequest(url: url)),
         "Error should have code for .schemeNotHTTPS",
         errorHandler)
     }
   }
 
-  func test_makeHTTPResponsePublisherForURLRequest_urlIsNil_throwsError() throws {
+  func test_safeMakeHTTPResponsePublisherForURLRequest_urlIsNil_throwsError() throws {
     try safelyUnwrapURL(string: "url/that/will/be/removed") { url in
       var urlRequest = URLRequest(url: url)
       urlRequest.url = nil
@@ -149,38 +149,38 @@ final class HTTPResponseFactoryTests: XCTestCase {
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.requestHasNoURL.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeHTTPResponsePublisher(for: urlRequest),
+        try URLSession.safeMakeHTTPResponsePublisher(for: urlRequest),
         "Error should have code for .requestHasNoURL",
         errorHandler)
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURLRequest_schemeIsHTTP_doesNotThrowError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURLRequest_schemeIsHTTP_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "http://apple.com") { url in
-      XCTAssertNoThrow(try URLSession.makeInsecureHTTPResponsePublisher(for: URLRequest(url: url)))
+      XCTAssertNoThrow(try URLSession.safeMakeInsecureHTTPResponsePublisher(for: URLRequest(url: url)))
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURLRequest_schemeIsHTTPS_doesNotThrowError() throws {
     try safelyUnwrapURL(string: "https://apple.com") { url in
-      XCTAssertNoThrow(try URLSession.makeInsecureHTTPResponsePublisher(for: URLRequest(url: url)))
+      XCTAssertNoThrow(try URLSession.safeMakeInsecureHTTPResponsePublisher(for: URLRequest(url: url)))
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURLRequest_schemeIsFTP_throwsError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURLRequest_schemeIsFTP_throwsError() throws {
     try safelyUnwrapURL(string: "ftp://apple.com") { url in
       let errorHandler: (Error) -> Void = {
         let nsError = $0 as NSError
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.schemeNotHTTPBased.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeInsecureHTTPResponsePublisher(for: URLRequest(url: url)),
+        try URLSession.safeMakeInsecureHTTPResponsePublisher(for: URLRequest(url: url)),
         "Error should have code for .schemeNotHTTPBased",
         errorHandler)
     }
   }
 
-  func test_makeInsecureHTTPResponsePublisherForURLRequest_urlIsNil_throwsError() throws {
+  func test_safeMakeInsecureHTTPResponsePublisherForURLRequest_urlIsNil_throwsError() throws {
     try safelyUnwrapURL(string: "url/that/will/be/removed") { url in
       var urlRequest = URLRequest(url: url)
       urlRequest.url = nil
@@ -189,7 +189,7 @@ final class HTTPResponseFactoryTests: XCTestCase {
         XCTAssertEqual(nsError.code, HTTPResponseError.Code.requestHasNoURL.rawValue)
       }
       XCTAssertThrowsError(
-        try URLSession.makeInsecureHTTPResponsePublisher(for: urlRequest),
+        try URLSession.safeMakeInsecureHTTPResponsePublisher(for: urlRequest),
         "Error should have code for .requestHasNoURL",
         errorHandler)
     }
