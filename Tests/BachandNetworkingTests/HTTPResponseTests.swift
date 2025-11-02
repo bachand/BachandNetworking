@@ -1,6 +1,9 @@
 //  Created by Michael Bachand on 8/21/20.
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import XCTest
 
 @testable import BachandNetworking
@@ -16,14 +19,18 @@ final class HTTPResponseTests: XCTestCase {
       let nsError = $0 as NSError
       XCTAssertEqual(nsError.code, HTTPResponseError.Code.responseNotHTTP.rawValue)
     }
+    // Create a URLResponse that is not an HTTPURLResponse
+    let url = URL(string: "http://example.com")!
+    let nonHTTPResponse = URLResponse(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     XCTAssertThrowsError(
-      try HTTPResponse(data: .init(), urlResponse: URLResponse()),
+      try HTTPResponse(data: .init(), urlResponse: nonHTTPResponse),
       "Error has code for .responseNotHTTP",
       errorHandler)
   }
 
   func test_init_urlResponseIsHTTP_doesNotThrowError() {
-    XCTAssertNoThrow(try HTTPResponse(data: .init(), urlResponse: HTTPURLResponse()))
+    let httpResponse = makeStubHTTPURLResponse(statusCode: 200)
+    XCTAssertNoThrow(try HTTPResponse(data: .init(), urlResponse: httpResponse))
   }
 
   func test_statusCode_returnsValueInURLResponse() throws {
@@ -48,6 +55,8 @@ final class HTTPResponseTests: XCTestCase {
 }
 
 // MARK: - HTTPResponseFactoryTests
+
+#if canImport(Combine)
 
 final class HTTPResponseFactoryTests: XCTestCase {
 
@@ -215,3 +224,5 @@ final class HTTPResponseFactoryTests: XCTestCase {
       line: line)
   }
 }
+
+#endif
