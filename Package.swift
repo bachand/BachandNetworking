@@ -16,6 +16,9 @@ let package = Package(
     .library(
       name: "BachandNetworking",
       targets: ["BachandNetworking"]),
+    .executable(
+      name: "BachandNetworkingDemo",
+      targets: ["BachandNetworkingDemo"]),
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
@@ -27,8 +30,14 @@ let package = Package(
     .target(
       name: "BachandNetworking",
       dependencies: []),
+    .target(
+      name: "BachandNetworkingDemo",
+      dependencies: ["BachandNetworking"]),
     .testTarget(
       name: "BachandNetworkingTests",
       dependencies: ["BachandNetworking"]),
+    .testTarget(
+      name: "BachandNetworkingDemoTests",
+      dependencies: ["BachandNetworkingDemo"]),
   ]
 )

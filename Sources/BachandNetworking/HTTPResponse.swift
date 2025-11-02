@@ -1,7 +1,13 @@
 //  Created by Michael Bachand on 8/21/20.
 
+#if canImport(Combine)
 import Combine
+#endif
 import Foundation
+
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 // MARK: - HTTPResponse
 
@@ -44,6 +50,8 @@ enum HTTPResponseError {
     case requestHasNoURL = 103
   }
 }
+
+#if canImport(Combine)
 
 // MARK: - URLSession
 
@@ -154,6 +162,8 @@ extension URLSession.DataTaskPublisher {
     map { try! HTTPResponse(data: $0, urlResponse: $1) }.eraseToAnyPublisher()
   }
 }
+
+#endif
 
 // MARK: Free functions
 

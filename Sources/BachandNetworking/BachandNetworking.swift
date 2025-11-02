@@ -1,5 +1,9 @@
 import Foundation
 
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 extension URLComponents {
   /// Adds the following query items to any existing items.
   public mutating func appendQueryItems(_ additionalItems: [URLQueryItem]) {
